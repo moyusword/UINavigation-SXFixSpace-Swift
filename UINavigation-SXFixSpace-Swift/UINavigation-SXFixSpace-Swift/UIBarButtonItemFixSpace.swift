@@ -47,7 +47,7 @@ public var sx_defultFixSpace: CGFloat = 0
 
 public var sx_disableFixSpace: Bool = false
 
-extension UIViewController {
+extension UIImagePickerController {
     
     private struct AssociatedKeys {
         static var tempDisableFixSpace = "tempDisableFixSpace"
