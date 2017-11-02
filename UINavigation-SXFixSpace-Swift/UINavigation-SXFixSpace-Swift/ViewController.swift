@@ -71,7 +71,8 @@ class ViewController: UIViewController {
     }
     
     @objc func intoAlbum() {
-        
+        let vc = UIImagePickerController()
+        present(vc, animated: true, completion: nil)
     }
 
 }

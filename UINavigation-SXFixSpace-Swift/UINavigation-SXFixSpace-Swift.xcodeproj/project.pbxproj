@@ -12,8 +12,7 @@
 		566E244E1FAB12E70084F2CA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 566E244C1FAB12E70084F2CA /* Main.storyboard */; };
 		566E24501FAB12E70084F2CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 566E244F1FAB12E70084F2CA /* Assets.xcassets */; };
 		566E24531FAB12E70084F2CA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 566E24511FAB12E70084F2CA /* LaunchScreen.storyboard */; };
-		566E245C1FAB13230084F2CA /* SwizzleMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566E245A1FAB13230084F2CA /* SwizzleMethod.swift */; };
-		566E245D1FAB13230084F2CA /* UIBarButtonItemFixSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566E245B1FAB13230084F2CA /* UIBarButtonItemFixSpace.swift */; };
+		566E245C1FAB13230084F2CA /* UIBarButtonItemFixSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566E245A1FAB13230084F2CA /* UIBarButtonItemFixSpace.swift */; };
 		566E245F1FAB134F0084F2CA /* DispatchQueueExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566E245E1FAB134F0084F2CA /* DispatchQueueExtension.swift */; };
 		566E24611FAB13A10084F2CA /* UIBarButtonItemExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566E24601FAB13A10084F2CA /* UIBarButtonItemExtension.swift */; };
 /* End PBXBuildFile section */
@@ -26,8 +25,7 @@
 		566E244F1FAB12E70084F2CA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		566E24521FAB12E70084F2CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		566E24541FAB12E70084F2CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		566E245A1FAB13230084F2CA /* SwizzleMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwizzleMethod.swift; sourceTree = "<group>"; };
-		566E245B1FAB13230084F2CA /* UIBarButtonItemFixSpace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIBarButtonItemFixSpace.swift; sourceTree = "<group>"; };
+		566E245A1FAB13230084F2CA /* UIBarButtonItemFixSpace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIBarButtonItemFixSpace.swift; sourceTree = "<group>"; };
 		566E245E1FAB134F0084F2CA /* DispatchQueueExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DispatchQueueExtension.swift; sourceTree = "<group>"; };
 		566E24601FAB13A10084F2CA /* UIBarButtonItemExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIBarButtonItemExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -63,9 +61,8 @@
 			isa = PBXGroup;
 			children = (
 				566E245E1FAB134F0084F2CA /* DispatchQueueExtension.swift */,
-				566E245A1FAB13230084F2CA /* SwizzleMethod.swift */,
+				566E245A1FAB13230084F2CA /* UIBarButtonItemFixSpace.swift */,
 				566E24601FAB13A10084F2CA /* UIBarButtonItemExtension.swift */,
-				566E245B1FAB13230084F2CA /* UIBarButtonItemFixSpace.swift */,
 				566E24481FAB12E70084F2CA /* AppDelegate.swift */,
 				566E244A1FAB12E70084F2CA /* ViewController.swift */,
 				566E244C1FAB12E70084F2CA /* Main.storyboard */,
@@ -149,10 +146,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				566E244B1FAB12E70084F2CA /* ViewController.swift in Sources */,
-				566E245D1FAB13230084F2CA /* UIBarButtonItemFixSpace.swift in Sources */,
 				566E24611FAB13A10084F2CA /* UIBarButtonItemExtension.swift in Sources */,
 				566E245F1FAB134F0084F2CA /* DispatchQueueExtension.swift in Sources */,
-				566E245C1FAB13230084F2CA /* SwizzleMethod.swift in Sources */,
+				566E245C1FAB13230084F2CA /* UIBarButtonItemFixSpace.swift in Sources */,
 				566E24491FAB12E70084F2CA /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -292,6 +288,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "UINavigation-SXFixSpace-Swift/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.charles.UINavigation-SXFixSpace-Swift";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -306,6 +303,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "UINavigation-SXFixSpace-Swift/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.charles.UINavigation-SXFixSpace-Swift";
 				PRODUCT_NAME = "$(TARGET_NAME)";
