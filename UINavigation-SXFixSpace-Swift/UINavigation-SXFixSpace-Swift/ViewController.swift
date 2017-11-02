@@ -35,6 +35,7 @@ class ViewController: UIViewController {
     }
 
     func configBarItem() {
+        
         guard let nav = navigationController else { return }
         
         if nav.viewControllers.count % 2 != 0 {
