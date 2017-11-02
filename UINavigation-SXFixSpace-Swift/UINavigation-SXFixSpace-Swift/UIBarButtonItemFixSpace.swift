@@ -37,7 +37,7 @@ extension UIApplication {
     }
 }
 
-class Swizzed: SwizzedAwake {
+extension NSObject {
     static func swizzleMethod(_ cls: AnyClass, originalSelector: Selector, swizzleSelector: Selector){
         
         let originalMethod = class_getInstanceMethod(cls, originalSelector)!
@@ -56,8 +56,20 @@ class Swizzed: SwizzedAwake {
                                            swizzledMethod)
         }
     }
+}
+
+
+public var sx_defultFixSpace: CGFloat = 0
+
+public var sx_disableFixSpace: Bool = false
+
+extension UIImagePickerController:SwizzedAwake {
     
-    static func awake() {
+    private struct AssociatedKeys {
+        static var tempDisableFixSpace = "tempDisableFixSpace"
+    }
+    
+    public static func awake() {
         DispatchQueue.once(UUID().uuidString) {
             swizzleMethod(UIImagePickerController.self,
                           originalSelector: #selector(UIImagePickerController.viewWillAppear(_:)),
@@ -68,30 +80,17 @@ class Swizzed: SwizzedAwake {
                           originalSelector: #selector(UIImagePickerController.viewWillDisappear(_:)),
                           swizzleSelector: #selector(UIImagePickerController.sx_viewWillDisappear(_:)))
             
-            swizzleMethod(UINavigationBar.self,
-                          originalSelector: #selector(UINavigationBar.layoutSubviews),
-                          swizzleSelector: #selector(UINavigationBar.sx_layoutSubviews))
-            
         }
     }
-}
-
-
-public var sx_defultFixSpace: CGFloat = 0
-
-public var sx_disableFixSpace: Bool = false
-
-private var UIImagePickerController_tempDisableFixSpace = "UIImagePickerController_tempDisableFixSpace"
-extension UIImagePickerController {
     
     var tempDisableFixSpace: Bool {
         get {
-            return objc_getAssociatedObject(self, &UIImagePickerController_tempDisableFixSpace) as? Bool ?? false
+            return objc_getAssociatedObject(self, &AssociatedKeys.tempDisableFixSpace) as? Bool ?? false
         }
         set {
             objc_setAssociatedObject(self,
-                                     &UIImagePickerController_tempDisableFixSpace,
-                                     UIImagePickerController_tempDisableFixSpace,
+                                     &AssociatedKeys.tempDisableFixSpace,
+                                     newValue,
                                      .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
     }
@@ -112,8 +111,17 @@ extension UIImagePickerController {
 }
 
 
-extension UINavigationBar {
+extension UINavigationBar: SwizzedAwake {
 
+    public static func awake() {
+        DispatchQueue.once(UUID().uuidString) {
+            swizzleMethod(UINavigationBar.self,
+                          originalSelector: #selector(UINavigationBar.layoutSubviews),
+                          swizzleSelector: #selector(UINavigationBar.sx_layoutSubviews))
+            
+        }
+    }
+    
     @objc func sx_layoutSubviews() {
         sx_layoutSubviews()
         
