@@ -9,34 +9,6 @@
 import Foundation
 import UIKit
 
-public protocol SwizzedAwake {
-    static func awake()
-}
-
-class NothingToSeeHere{
-    static func harmlessFunction() {
-        let typeCount = Int(objc_getClassList(nil, 0))
-        let types = UnsafeMutablePointer<AnyClass>.allocate(capacity: typeCount)
-        let autoreleaseintTypes = AutoreleasingUnsafeMutablePointer<AnyClass>(types)
-        objc_getClassList(autoreleaseintTypes, Int32(typeCount))
-        for index in 0 ..< typeCount{
-            (types[index] as? SwizzedAwake.Type)?.awake()
-        }
-        types.deallocate(capacity: typeCount)
-    }
-}
-
-extension UIApplication {
-    private static let runOnce: Void = {
-        NothingToSeeHere.harmlessFunction()
-    }()
-    
-    open override var next: UIResponder? {
-        UIApplication.runOnce
-        return super.next
-    }
-}
-
 extension NSObject {
     static func swizzleMethod(_ cls: AnyClass, originalSelector: Selector, swizzleSelector: Selector){
         
@@ -59,17 +31,29 @@ extension NSObject {
 }
 
 
+extension UIApplication {
+    private static let classSwizzedMethod: Void = {
+        UIImagePickerController.sx_swizzleMethod
+        UINavigationBar.sx_swizzleMethod
+    }()
+    
+    open override var next: UIResponder? {
+        UIApplication.classSwizzedMethod
+        return super.next
+    }
+}
+
 public var sx_defultFixSpace: CGFloat = 0
 
 public var sx_disableFixSpace: Bool = false
 
-extension UIImagePickerController:SwizzedAwake {
+extension UIViewController {
     
     private struct AssociatedKeys {
         static var tempDisableFixSpace = "tempDisableFixSpace"
     }
     
-    public static func awake() {
+    static let sx_swizzleMethod: Void = {
         DispatchQueue.once(UUID().uuidString) {
             swizzleMethod(UIImagePickerController.self,
                           originalSelector: #selector(UIImagePickerController.viewWillAppear(_:)),
@@ -81,7 +65,7 @@ extension UIImagePickerController:SwizzedAwake {
                           swizzleSelector: #selector(UIImagePickerController.sx_viewWillDisappear(_:)))
             
         }
-    }
+    }()
     
     var tempDisableFixSpace: Bool {
         get {
@@ -111,16 +95,16 @@ extension UIImagePickerController:SwizzedAwake {
 }
 
 
-extension UINavigationBar: SwizzedAwake {
+extension UINavigationBar {
 
-    public static func awake() {
+    static let sx_swizzleMethod: Void = {
         DispatchQueue.once(UUID().uuidString) {
             swizzleMethod(UINavigationBar.self,
                           originalSelector: #selector(UINavigationBar.layoutSubviews),
                           swizzleSelector: #selector(UINavigationBar.sx_layoutSubviews))
             
         }
-    }
+    }()
     
     @objc func sx_layoutSubviews() {
         sx_layoutSubviews()
